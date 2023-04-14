@@ -7,5 +7,6 @@
 
 ### Additional Datasets
 * [https://www.tugraz.at/index.php?id=22387](https://www.tugraz.at/index.php?id=22387)
+* [https://uavid.nl/](https://uavid.nl/)
 * [https://midair.ulg.ac.be/download.html](https://midair.ulg.ac.be/download.html)
 * [https://github.com/montefiore-ai/midair-dataset/](https://github.com/montefiore-ai/midair-dataset/)
