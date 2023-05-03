@@ -143,8 +143,7 @@ model = dict(
         filter_low_score=True,
         mode='slide',
         crop_size=(896, 896),
-        stride=(768, 768)),
-        #stride=(896, 896)),
+        stride=(896, 896)),
     init_cfg=None)
 dataset_type = 'SUADDDataset'
 data_root = '/mnt/data/nick/segm/suadd23-semseg-amazon/mmsegmentation/data/suadd23/'
@@ -157,8 +156,8 @@ train_pipeline = [
     dict(type='LoadAnnotations'),
     dict(type='Resize', img_scale=(1550, 2200), ratio_range=(0.5, 2.0)),
     dict(type='RandomCrop', crop_size=(896, 896), cat_max_ratio=0.75),
-    dict(type='RandomFlip', prob=0.5),
-    dict(type='PhotoMetricDistortion'),
+    dict(type='RandomFlip', prob=0.5, direction='horizontal'),
+    dict(type='RandomFlip', prob=0.5, direction='vertical'),
     dict(
         type='Normalize',
         mean=[123.675, 116.28, 103.53],
@@ -204,8 +203,8 @@ data = dict(
             dict(
                 type='Resize', img_scale=(1550, 2200), ratio_range=(0.5, 2.0)),
             dict(type='RandomCrop', crop_size=(896, 896), cat_max_ratio=0.75),
-            dict(type='RandomFlip', prob=0.5),
-            dict(type='PhotoMetricDistortion'),
+            dict(type='RandomFlip', prob=0.5, direction='horizontal'),
+            dict(type='RandomFlip', prob=0.5, direction='vertical'),
             dict(
                 type='Normalize',
                 mean=[123.675, 116.28, 103.53],
@@ -252,9 +251,7 @@ data = dict(
             dict(type='LoadImageFromFile'),
             dict(
                 type='MultiScaleFlipAug',
-                img_scale=(1550, 2200),
-                #img_scale=(1260, 1792),
-                img_scale=(896,1270),
+                img_scale=(896, 1792),
                 flip=False,
                 transforms=[
                     dict(type='Resize', keep_ratio=False),
@@ -271,6 +268,7 @@ data = dict(
 log_config = dict(
     interval=50, hooks=[dict(type='TextLoggerHook', by_epoch=False)])
 dist_params = dict(backend='nccl')
+custom_hooks = [dict(type='EMAHook', interval=1, priority='HIGH')]
 log_level = 'INFO'
 load_from = '/mnt/data/nick/segm/ViT-Adapter/segmentation/mask2former_beitv2_adapter_large_896_80k_ade20k.pth'
 resume_from = None
@@ -297,6 +295,6 @@ checkpoint_config = dict(by_epoch=False, interval=1000, max_keep_ckpts=1)
 evaluation = dict(
     interval=2000, metric='mIoU', pre_eval=True, save_best='mIoU')
 pretrained = '/mnt/data/nick/segm/ViT-Adapter/segmentation/beitv2_large_patch16_224_pt1k_ft21k.pth'
-work_dir = './work_dirs/mask2former_beitv2_adapter_large_896_80k_ade20k_ss'
+work_dir = '/home/nick/Data/mask2former_beitv2_adapter_large_896_80k_ade20k_ss_v1'
 gpu_ids = range(0, 1)
 auto_resume = False
