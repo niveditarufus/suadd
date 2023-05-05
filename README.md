@@ -10,6 +10,7 @@
 * [https://midair.ulg.ac.be/download.html](https://midair.ulg.ac.be/download.html)
 * [https://github.com/montefiore-ai/midair-dataset/](https://github.com/montefiore-ai/midair-dataset/)
 
+```
 ### Usage instructions
 * git clone https://github.com/czczup/ViT-Adapter/tree/main
 * cd ViT-Adapter/segmentation
@@ -20,5 +21,5 @@
 * pip install mmsegmentation==0.20.2
 * ln -s ../detection/ops ./
 * cd ops & sh make.sh # compile deformable attention
-
+```
 Then use the config provided here to train the model. Our final submission was a soup of the 18kth and the 20kth iter models.
