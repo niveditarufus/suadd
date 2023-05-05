@@ -22,4 +22,4 @@
 * ln -s ../detection/ops ./
 * cd ops & sh make.sh # compile deformable attention
 ```
-Then use the config provided here to train the model. Our final submission was a soup of the 18kth and the 20kth iter models.
+Then use the config provided [here](https://github.com/niveditarufus/suadd/blob/main/mask2former_beitv2_adapter_large_896_80k_ade20k_ss_tr_896.py) to train the model. Our final submission was a soup of the 18kth and the 20kth iter models.
